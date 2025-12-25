@@ -136,7 +136,8 @@ const icons = {
   quests: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-6z"></path><path d="M12 2v16"></path></svg>`,
   achievements: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><circle cx="12" cy="8" r="6"></circle><path d="M15.41 12.5L12 11l-3.41 1.5L10 19l2-1 2 1-1.41-6.5z"></path></svg>`,
   rewards: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M2 20h20M4 20V5h16v15M8 20v-5h8v5M8 10h8M8 7h8"></path></svg>`,
-  command: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M9 9h6v6H9z"></path><path d="M9 1h6"></path><path d="M1 9v6"></path><path d="M23 9v6"></path><path d="M9 23h6"></path></svg>`
+  command: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M9 9h6v6H9z"></path><path d="M9 1h6"></path><path d="M1 9v6"></path><path d="M23 9v6"></path><path d="M9 23h6"></path></svg>`,
+  report: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`
 }
 
 async function initData() {
@@ -760,6 +761,10 @@ function renderNav(active) {
       <div class="nav-item ${active === 'report' ? 'active' : ''}" onclick="window.switchNav('report')">
         <span class="nav-icon">${icons.report}</span>
         <span class="nav-label">${t('report.str')}</span>
+      </div>
+      <!-- SECRET ADMIN BUTTON -->
+      <div class="nav-item" style="opacity: 0.1; width: 30px; flex: inherit; border-left: 1px solid #333;" oncontextmenu="window.switchNav('command'); return false;" onclick="if(event.ctrlKey) window.switchNav('command')">
+        <span class="nav-icon">${icons.command}</span>
       </div>
     </nav>
     `;
