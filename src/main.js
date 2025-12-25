@@ -763,11 +763,36 @@ function renderNav(active) {
         <span class="nav-label">${t('report.str')}</span>
       </div>
       <!-- SECRET ADMIN BUTTON -->
-      <div class="nav-item" style="opacity: 0.1; width: 30px; flex: inherit; border-left: 1px solid #333;" oncontextmenu="window.switchNav('command'); return false;" onclick="if(event.ctrlKey) window.switchNav('command')">
+      <div class="nav-item" style="opacity: 0.2; width: 40px; flex: inherit; border-left: 1px solid #333;" onclick="window.handleSecretClick()">
         <span class="nav-icon">${icons.command}</span>
       </div>
     </nav>
     `;
+}
+
+// Secret Click Handler
+let secretClicks = 0;
+let secretTimer = null;
+window.handleSecretClick = () => {
+  secretClicks++;
+
+  if (secretClicks === 1) {
+    // Start timer
+    secretTimer = setTimeout(() => {
+      secretClicks = 0;
+    }, 2000); // 2 seconds to click 5 times
+  }
+
+  if (secretClicks >= 5) {
+    clearTimeout(secretTimer);
+    secretClicks = 0;
+    audioManager.playSuccess(); // Feedback
+    window.switchNav('command');
+  } else {
+    // Small feedback
+    audioManager.playClick();
+  }
+}
 }
 
 function calculateWeeklyStats(op) {
