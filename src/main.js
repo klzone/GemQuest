@@ -835,6 +835,24 @@ function renderReport() {
        <div class="status-dot"></div>
        <div class="section-title">本周行动简报 (WEEKLY REPORT)</div>
     </div>
+
+    <!-- Operator Switcher Tabs -->
+    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+       ${state.operators.map((o, idx) => `
+         <button onclick="window.switchChild(${idx})" style="
+            flex: 1; 
+            background: ${state.activeOpIndex === idx ? 'var(--c-accent)' : 'rgba(0,0,0,0.3)'}; 
+            color: ${state.activeOpIndex === idx ? '#000' : '#888'}; 
+            border: 1px solid ${state.activeOpIndex === idx ? 'var(--c-accent)' : '#444'}; 
+            padding: 8px; 
+            font-family: var(--font-tech); 
+            font-weight: bold;
+            clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+         ">
+            ${o.code_name}
+         </button>
+       `).join('')}
+    </div>
     
     <div style="padding-bottom: 80px;">
       <!-- 1. Portrait Section -->
