@@ -135,37 +135,50 @@ const icons = {
 }
 
 async function initData() {
-  state.loading = true;
-  render();
+  try {
+    state.loading = true;
+    render();
 
-  // 1. Fetch Operators
-  const { data: ops } = await supabase.from('operators').select('*').order('code_name');
-  if (ops && ops.length > 0) {
-    state.operators = ops;
-  } else {
-    // Seed if empty (first run)
-    const { data: newOps } = await supabase.from('operators').insert([
-      { code_name: 'LEO', security_rank: 'SR-05', tac_xp: 2450 },
-      { code_name: 'MIA', security_rank: 'SR-03', tac_xp: 1820 }
-    ]).select();
-    state.operators = newOps || [];
+    // 1. Fetch Operators
+    const { data: ops, error: opError } = await supabase.from('operators').select('*').order('code_name');
+    if (opError) throw opError;
+
+    if (ops && ops.length > 0) {
+      state.operators = ops;
+    } else {
+      // Seed if empty (first run)
+      const { data: newOps, error: seedError } = await supabase.from('operators').insert([
+        { code_name: 'LEO', security_rank: 'SR-05', tac_xp: 2450 },
+        { code_name: 'MIA', security_rank: 'SR-03', tac_xp: 1820 }
+      ]).select();
+      if (seedError) throw seedError;
+      state.operators = newOps || [];
+    }
+
+    // 2. Fetch Global Content
+    const { data: missions, error: missError } = await supabase.from('missions').select('*').order('id');
+    if (missError) throw missError;
+    state.missions = missions || [];
+
+    const { data: rewards, error: rewError } = await supabase.from('rewards').select('*').order('cost');
+    if (rewError) throw rewError;
+    state.rewards = rewards || [];
+
+    const { data: achievements, error: achError } = await supabase.from('achievements').select('*');
+    if (achError) throw achError;
+    state.achievements = achievements || [];
+
+    // 3. Fetch User Progress
+    await fetchUserData();
+
+    state.loading = false;
+    render();
+  } catch (err) {
+    console.error('Init Error:', err);
+    alert('System Initialization Failed: ' + (err.message || 'Unknown Error'));
+    state.loading = false;
+    render();
   }
-
-  // 2. Fetch Global Content
-  const { data: missions } = await supabase.from('missions').select('*').order('id');
-  state.missions = missions || [];
-
-  const { data: rewards } = await supabase.from('rewards').select('*').order('cost');
-  state.rewards = rewards || [];
-
-  const { data: achievements } = await supabase.from('achievements').select('*');
-  state.achievements = achievements || [];
-
-  // 3. Fetch User Progress
-  await fetchUserData();
-
-  state.loading = false;
-  render();
 }
 
 async function fetchUserData() {
@@ -183,10 +196,10 @@ async function fetchUserData() {
     const mission = state.missions.find(m => m.id === p.mission_id);
     if (!mission) return;
 
-    if (mission.recurrence === 'daily' && p.last_completed_date !== today) {
+    if (mission.recurrence === 'daily' && p.updated_at.split('T')[0] !== today) {
       progMap[p.mission_id] = 0;
     } else if (mission.recurrence === 'weekly') {
-      const last = new Date(p.last_completed_date);
+      const last = new Date(p.updated_at);
       const now = new Date();
       const diffTime = Math.abs(now - last);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
