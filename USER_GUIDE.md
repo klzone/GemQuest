@@ -62,5 +62,21 @@ The system automatically distinguishes between two types of operators based on a
 - **No Sound**: Ensure the device is not in Silent Mode. Interacting with the page typically unmutes audio.
 - **Data Not Saving**: Check your internet connection (Supabase requires online access).
 
+
+## 📱 手机端安装指南 (Mobile Support)
+
+### 方案 A：网页直装 (推荐 - PWA)
+本应用已升级为 **PWA (渐进式 Web 应用)**，无需下载安装包即可体验原生 App 效果。
+1.  在手机浏览器（Safari 或 Chrome）打开应用网址。
+2.  点击浏览器菜单中的 **"添加到主屏幕" (Add to Home Screen)**。
+3.  应用会自动安装到桌面，全屏运行，无地址栏，体验极佳。
+
+### 方案 B：安卓安装包 (APK)
+如果您需要原生安装包 (.apk)：
+1.  将本项目代码上传至 GitHub。
+2.  点击 GitHub 仓库顶部的 **Actions** 标签。
+3.  点击左侧的 **Build Android APK** 工作流。
+4.  点击最新的运行记录，在底部 **Artifacts** 区域下载 `gem-quest-debug.apk`。
+
 ---
 *Gem Quest - Turning Habits into Victory.*
