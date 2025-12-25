@@ -542,6 +542,23 @@ function renderCommandCenter() {
       </div>
     </main>
     ${renderNav('command')}
+    
+    <!-- HELP MODAL -->
+    <div id="help-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 20px;">
+      <div style="background: #111; border: 1px solid var(--c-accent); padding: 20px; max-height: 80%; overflow-y: auto; color: #ddd; font-size: 12px; line-height: 1.6; max-width: 400px; width: 100%;">
+        <h2 style="color: var(--c-accent); margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px;">📋 指挥官手册 (Guide)</h2>
+        <p><strong>1. 分龄规则 (Age Rules)</strong><br>
+        - Junior (8岁): 任务简单，每日限15币。<br>
+        - Senior (12岁): 任务强度大，每日限18币。</p>
+        <p><strong>2. 每日上限 (Daily Cap)</strong><br>
+        为了防止刷分，日常任务有上限。但“做家务”等Bonus任务不设限，鼓励多劳多得。</p>
+        <p><strong>3. 商店物品 (Shop)</strong><br>
+        每周会有金色“限定物品”置顶，建议引导孩子积攒购买。</p>
+        <p><strong>4. 成就徽章 (Badges)</strong><br>
+        系统会自动记录连续打卡天数，达成条件自动解锁酷炫徽章！</p>
+        <button onclick="window.toggleHelp()" style="width: 100%; background: var(--c-accent); color: #000; border: none; padding: 10px; font-weight: bold; margin-top: 15px;">CLOSE</button>
+      </div>
+    </div>
   `;
 }
 
