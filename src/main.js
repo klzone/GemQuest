@@ -56,7 +56,6 @@ const i18n = {
     opXP: '战备点数 (XP)',
     saveChanges: '保存档案变更',
     manageMissions: '作战任务管理',
-    manageMissions: '作战任务管理',
     chkDaily: '每日任务',
     chkWeekly: '每周任务',
     btnDelete: '删除 / DELETE',
@@ -87,7 +86,13 @@ const i18n = {
     shopTabLogistics: '后勤物资 (LOGISTICS)',
     shopTabArmory: '战术军械 (ARMORY)',
     sellConfirm: '确认出售此装备？',
-    sellRefund: '将返还 80% 价值：'
+    sellRefund: '将返还 80% 价值：',
+    report: {
+      str: '综合素质',
+      int: '专注行为',
+      tec: '主动行为',
+      mood: '情绪稳定'
+    }
   }
 }
 
