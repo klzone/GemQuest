@@ -76,6 +76,11 @@ class AudioManager {
         this.playOscillator('sine', 1200, 1200, 0.05, 0.1);
     }
 
+    // Help/Paper sound
+    playOpenHelp() {
+        this.playOscillator('triangle', 200, 400, 0.15, 0.3);
+    }
+
     _playNote(startTime, freq, duration) {
         if (!this.enabled) return;
         const osc = this.ctx.createOscillator();
