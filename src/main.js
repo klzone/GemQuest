@@ -793,7 +793,7 @@ window.handleSecretClick = () => {
     audioManager.playClick();
   }
 }
-}
+
 
 function calculateWeeklyStats(op) {
   // Mock data for demo if stats are empty
