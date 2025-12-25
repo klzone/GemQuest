@@ -1,0 +1,22 @@
+{
+    "name": "Gem Quest: Delta Force",
+    "short_name": "GemOps",
+    "description": "Tactical Mission & Reward System for Junior Operators",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#ff9800",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/assets/avatar.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/avatar.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
